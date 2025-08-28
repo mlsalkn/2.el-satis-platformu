@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Türkiye'nin en güvenilir ikinci el alışveriş platformu. Ücretsiz ilan ver, güvenle al sat yap.">
+    <meta name="keywords" content="ikinci el, 2.el, alışveriş, kullanılmış, ucuz, ilan, 2.el çarşı, 2.el pazar">
+    <title>2.El Çarşı - İkinci El Alışveriş Platformu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script src="script.js"></script>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            🚀 Türkiye'nin En Güvenilir İkinci El Platformu - Ücretsiz İlan Ver!
+        </div>
+        
+        <div class="header-main">
+            <div class="logo" onclick="showSection('anasayfa')">
+                <div class="logo-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                        <path d="M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20C20.55 4 21 4.45 21 5S20.55 6 20 6H19V19C19 20.1 18.1 21 17 21H7C5.9 21 5 20.1 5 19V6H4C3.45 6 3 5.55 3 5S3.45 4 4 4H7ZM9 3V4H15V3H9ZM7 6V19H17V6H7Z"/>
+                    </svg>
+                </div>
+                <div class="logo-text">2.El Çarşı</div>
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Ürün, kategori veya marka ara..." id="mainSearch">
+                <button class="search-btn" onclick="searchProducts()">🔍</button>
+            </div>
+            
+            <div class="header-actions">
+                <button class="btn-sell" onclick="showSection('ilan-ver')">+ Ücretsiz İlan Ver</button>
+                <div class="user-menu" onclick="openLoginModal()">
+                    <span>👤 Giriş Yap</span>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="nav-bar">
+            <div class="nav-container">
+                <div class="nav-item active" onclick="showSection('anasayfa')">Ana Sayfa</div>
+                
+                <div class="nav-item">
+                    Tüm Kategoriler
+                    <div class="dropdown categories-dropdown">
+                        <div class="categories-grid-dropdown">
+                            <div class="dropdown-category" onclick="showCategoryPage('elektronik')">
+                                <div class="dropdown-icon">📱</div>
+                                <div class="dropdown-name">Elektronik</div>
+                            </div>
+                            <div class="dropdown-category" onclick="showCategoryPage('giyim')">
+                                <div class="dropdown-icon">👕</div>
+                                <div class="dropdown-name">Giyim</div>
+                            </div>
+                            <div class="dropdown-category" onclick="showCategoryPage('ev-yasam')">
+                                <div class="dropdown-icon">🏠</div>
+                                <div class="dropdown-name">Ev & Yaşam</div>
+                            </div>
+                            <div class="dropdown-category" onclick="showCategoryPage('arac')">
+                                <div class="dropdown-icon">🚗</div>
+                                <div class="dropdown-name">Vasıta</div>
+                            </div>
+                            <div class="dropdown-category" onclick="showCategoryPage('spor')">
+                                <div class="dropdown-icon">⚽</div>
+                                <div class="dropdown-name">Spor</div>
+                            </div>
+                            <div class="dropdown-category" onclick="showCategoryPage('kitap')">
+                                <div class="dropdown-icon">📚</div>
+                                <div class="dropdown-name">Kitap</div>
+                            </div>
+                            <div class="dropdown-category" onclick="showCategoryPage('oyuncak')">
+                                <div class="dropdown-icon">🧸</div>
+                                <div class="dropdown-name">Bebek & Çocuk</div>
+                            </div>
+                            <div class="dropdown-category" onclick="showCategoryPage('diger')">
+                                <div class="dropdown-icon">📦</div>
+                                <div class="dropdown-name">Diğer</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="nav-item">
+                    Performans
+                    <div class="dropdown">
+                        <div class="dropdown-list">
+                            <a href="#" class="dropdown-item" onclick="showSection('performans')">📊 Performans Raporu</a>
+                            <a href="#" class="dropdown-item" onclick="openModal('filter-modal')">🔍 Gelişmiş Filtreler</a>
+                            <a href="#" class="dropdown-item" onclick="openModal('analytics-modal')">📈 Analitik Dashboard</a>
+                            <a href="#" class="dropdown-item">⚡ Optimizasyon</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="nav-item" onclick="showSection('guvenli-odeme')">Güvenli Ödeme</div>
+                
+                <div class="nav-item">
+                    Yardım
+                    <div class="dropdown">
+                        <div class="dropdown-list">
+                            <a href="#" class="dropdown-item" onclick="showSection('yardim')">❓ Sık Sorulan Sorular</a>
+                            <a href="#" class="dropdown-item" onclick="showSection('iletisim')">📞 İletişim</a>
+                            <a href="#" class="dropdown-item" onclick="showSection('kullanim-kosullari')">📋 Kullanım Koşulları</a>
+                            <a href="#" class="dropdown-item" onclick="showSection('gizlilik')">🔒 Gizlilik Politikası</a>
+                            <a href="#" class="dropdown-item" onclick="showSection('guvenlik')">🛡️ Güvenlik</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Ana Sayfa -->
+        <div id="anasayfa" class="section active">
+            <div class="hero-banner">
+                <div class="hero-title">Türkiye'nin En Büyük İkinci El Platformu</div>
+                <div class="hero-subtitle">Milyonlarca ürün arasından aradığını bul, güvenle al sat!</div>
+            </div>
+
+            <!-- Filtre Bölümü (Yukarıda) -->
+            <div class="filter-section">
+                <div class="filter-title">Filtreleme Seçenekleri</div>
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <label>Fiyat Aralığı</label>
+                        <div class="price-range">
+                            <input type="number" placeholder="Min TL" id="minPrice">
+                            <span>-</span>
+                            <input type="number" placeholder="Max TL" id="maxPrice">
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Durum</label>
+                        <select id="conditionFilter">
+                            <option value="">Tümü</option>
+                            <option value="new">Sıfır</option>
+                            <option value="like-new">Sıfır Gibi</option>
+                            <option value="used">Kullanılmış</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Konum</label>
+                        <select id="locationFilter">
+                            <option value="">Tüm Türkiye</option>
+                            <option value="istanbul">İstanbul</option>
+                            <option value="ankara">Ankara</option>
+                            <option value="izmir">İzmir</option>
+                            <option value="bursa">Bursa</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Sıralama</label>
+                        <select id="sortFilter">
+                            <option value="newest">En Yeniler</option>
+                            <option value="price-low">Fiyat (Artan)</option>
+                            <option value="price-high">Fiyat (Azalan)</option>
+                            <option value="popular">En Popüler</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn-primary" style="margin-top: 15px;" onclick="applyFilters()">Filtrele</button>
+            </div>
+
+            <!-- Kategoriler Bölümü (Aşağıda) -->
+            <div class="categories-grid">
+                <div class="category-card" onclick="showCategoryPage('elektronik')">
+                    <div class="category-icon">📱</div>
+                    <div class="category-name">Elektronik</div>
+                    <div class="category-count">12,543 ürün</div>
+                </div>
+                
+                <div class="category-card" onclick="showCategoryPage('giyim')">
+                    <div class="category-icon">👕</div>
+                    <div class="category-name">Giyim & Aksesuar</div>
+                    <div class="category-count">8,721 ürün</div>
+                </div>
+                
+                <div class="category-card" onclick="showCategoryPage('ev-yasam')">
+                    <div class="category-icon">🏠</div>
+                    <div class="category-name">Ev & Yaşam</div>
+                    <div class="category-count">6,234 ürün</div>
+                </div>
+                
+                <div class="category-card" onclick="showCategoryPage('arac')">
+                    <div class="category-icon">🚗</div>
+                    <div class="category-name">Vasıta</div>
+                    <div class="category-count">4,567 ürün</div>
+                </div>
+                
+                <div class="category-card" onclick="showCategoryPage('spor')">
+                    <div class="category-icon">⚽</div>
+                    <div class="category-name">Spor & Outdoor</div>
+                    <div class="category-count">3,891 ürün</div>
+                </div>
+                
+                <div class="category-card" onclick="showCategoryPage('kitap')">
+                    <div class="category-icon">📚</div>
+                    <div class="category-name">Kitap & Müzik</div>
+                    <div class="category-count">5,432 ürün</div>
+                </div>
+                
+                <div class="category-card" onclick="showCategoryPage('oyuncak')">
+                    <div class="category-icon">🧸</div>
+                    <div class="category-name">Bebek & Çocuk</div>
+                    <div class="category-count">2,876 ürün</div>
+                </div>
+                
+                <div class="category-card" onclick="showCategoryPage('diger')">
+                    <div class="category-icon">📦</div>
+                    <div class="category-name">Diğer</div>
+                    <div class="category-count">1,965 ürün</div>
+                </div>
+            </div>
+
+            <div class="products-section">
+                <div class="section-title">Öne Çıkan İlanlar</div>
+                <div class="products-grid" id="featuredProducts">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="product-badge">ÖNE ÇIKAN</div>
+                            iPhone 13 Pro - Tertemiz
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">iPhone 13 Pro 256GB - Altın</div>
+                            <div class="product-price">28.500 TL</div>
+                            <div class="product-location">📍 İstanbul, Beşiktaş</div>
+                            <div class="product-features">
+                                <span class="feature-tag">Sıfır Gibi</span>
+                                <span class="feature-tag">256GB</span>
+                                <span class="feature-tag">Garantili</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="product-badge">YENİ</div>
+                            Samsung Galaxy S22 Ultra
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">Samsung Galaxy S22 Ultra 512GB</div>
+                            <div class="product-price">25.999 TL</div>
+                            <div class="product-location">📍 Ankara, Çankaya</div>
+                            <div class="product-features">
+                                <span class="feature-tag">Sıfır</span>
+                                <span class="feature-tag">512GB</span>
+                                <span class="feature-tag">Garantili</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="product-badge">HIZLI</div>
+                            MacBook Pro 2022
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">MacBook Pro 14" M2 Pro 1TB</div>
+                            <div class="product-price">42.750 TL</div>
+                            <div class="product-location">📍 İzmir, Karşıyaka</div>
+                            <div class="product-features">
+                                <span class="feature-tag">Az Kullanılmış</span>
+                                <span class="feature-tag">1TB SSD</span>
+                                <span class="feature-tag">Garantili</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="product-badge">İNDİRİM</div>
+                            Sony PlayStation 5
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">Sony PS5 Digital Edition + 2 Oyun</div>
+                            <div class="product-price">15.999 TL</div>
+                            <div class="product-location">📍 Bursa, Nilüfer</div>
+                            <div class="product-features">
+                                <span class="feature-tag">Sıfır Gibi</span>
+                                <span class="feature-tag">2 Oyun</span>
+                                <span class="feature-tag">Faturalı</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Elektronik Kategori Sayfası -->
+        <div id="elektronik" class="section">
+            <div class="category-header">
+                <div class="category-title">Elektronik Kategorisi</div>
+                <div class="category-description">Cep telefonları, bilgisayarlar, tabletler, kameralar ve daha fazlası</div>
+            </div>
+
+            <div class="subcategories-grid">
+                <div class="subcategory-card" onclick="filterProducts('telefon')">
+                    <div class="subcategory-icon">📱</div>
+                    <div class="subcategory-name">Cep Telefonları</div>
+                </div>
+                <div class="subcategory-card" onclick="filterProducts('bilgisayar')">
+                    <div class="subcategory-icon">💻</div>
+                    <div class="subcategory-name">Bilgisayarlar</div>
+                </div>
+                <div class="subcategory-card" onclick="filterProducts('tablet')">
+                    <div class="subcategory-icon">📟</div>
+                    <div class="subcategory-name">Tabletler</div>
+                </div>
+                <div class="subcategory-card" onclick="filterProducts('tv')">
+                    <div class="subcategory-icon">📺</div>
+                    <div class="subcategory-name">TV & Görüntü & Ses</div>
+                </div>
+                <div class="subcategory-card" onclick="filterProducts('kamera')">
+                    <div class="subcategory-icon">📷</div>
+                    <div class="subcategory-name">Fotoğraf & Kamera</div>
+                </div>
+                <div class="subcategory-card" onclick="filterProducts('oyun')">
+                    <div class="subcategory-icon">🎮</div>
+                    <div class="subcategory-name">Oyun Konsolları</div>
+                </div>
+            </div>
+
+            <div class="products-section">
+                <div class="section-title">Elektronik Ürünler</div>
+                <div class="products-grid" id="elektronikProducts">
+                    <!-- Products will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Diğer kategori sayfaları benzer şekilde eklenecek -->
+
+        <!-- Performans Sayfası -->
+        <div id="performans" class="section">
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">1,248</div>
+                    <div class="metric-label">Toplam Görüntülenme</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">87</div>
+                    <div class="metric-label">İletişim Talepleri</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">45</div>
+                    <div class="metric-label">Satışlar</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">4.8/5</div>
+                    <div class="metric-label">Ortalama Puan</div>
+                </div>
+            </div>
+            <div class="filters-section">
+                <div class="section-title">Filtreler</div>
+                <div class="filters-grid">
+                    <div class="form-group">
+                        <label for="dateRange">Tarih Aralığı</label>
+                        <select id="dateRange">
+                            <option value="7">Son 7 Gün</option>
+                            <option value="30">Son 30 Gün</option>
+                            <option value="90">Son 90 Gün</option>
+                            <option value="all">Tüm Zamanlar</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="metricType">Metrik Türü</label>
+                        <select id="metricType">
+                            <option value="views">Görüntülenme</option>
+                            <option value="contacts">İletişim Talepleri</option>
+                            <option value="sales">Satışlar</option>
+                            <option value="ratings">Puanlar</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="comparePeriod">Karşılaştırma Dönemi</label>
+                        <select id="comparePeriod">
+                            <option value="none">Yok</option>
+                            <option value="previous">Önceki Dönem</option>
+                            <option value="same">Geçen Yılın Aynı Dönemi</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="products-section">
+                <div class="section-title">Detaylı Raporlar</div>
+                <div class="products-grid" id="performanceReports">
+                    <!-- Performance reports will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </div>  
+        
+        <!-- Güvenli Ödeme Sayfası -->
+        <div id="guvenli-odeme" class="section">
+            <div class="payment-methods">
+                <div class="payment-card">
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-name">Kredi Kartı</div>
+                </div>
+                <div class="payment-card">  
+                    <div class="payment-icon">🅿️</div>
+                    <div class="payment-name">PayPal</div>  
+                </div>
+                <div class="payment-card">
+                    <div class="payment-icon">🏦</div>
+                    <div class="payment-name">Banka Transferi</div>
+                </div>
+                <div class="payment-card">
+                    <div class="payment-icon">📱</div>
+                    <div class="payment-name">Mobil Ödeme</div>
+                </div>
+            </div>
+            <div class="products-section">
+                <div class="section-title">Güvenli Ödeme Nasıl Çalışır?</div>
+                <p>Güvenli ödeme sistemi, alıcı ve satıcı arasındaki işlemleri korur ve her iki tarafın da güvenliğini sağlar. İşte nasıl çalışır:</p>
+                <ul>
+                    <li>Alıcı, ürünü satın almak istediğinde ödemeyi platform üzerinden yapar.</li>         
+                    <li>Ödeme, satıcıya değil, platformun güvenli hesabına aktarılır.</li>
+                    <li>Satıcı, ürünü alıcıya gönderdikten sonra, alıcı ürünü teslim alır ve onaylar.</li>
+                    <li>Alıcı onay verdikten sonra, ödeme satıcıya serbest bırakılır.</li>
+                    <li>Eğer alıcı ürünü teslim almazsa veya sorun yaşarsa, ödeme platform tarafından geri iade edilir.</li>
+                </ul>
+                <p>Bu sistem, dolandırıcılık riskini azaltır ve her iki tarafın da güvenliğini sağlar.</p>
+            </div>
+        </div>  
+        
+        <!-- Yardım Sayfası -->
+        <div id="yardim" class="section">   
+            <div class="section-title">Yardım ve Destek</div>
+            <div class="help-categories">
+                <div class="help-card">
+                    <div class="help-icon">❓</div>
+                    <div class="help-title">Sık Sorulan Sorular</div>
+                    <div class="help-description">En çok sorulan sorular ve cevapları burada bulabilirsiniz.</div>
+                </div>
+                <div class="help-card">
+                    <div class="help-icon">📞</div>
+                    <div class="help-title">İletişim</div>
+                    <div class="help-description">Bize ulaşmak için iletişim bilgilerini burada bulabilirsiniz.</div>
+                </div>
+                <div class="help-card">  
+                    <div class="help-icon">📋</div>
+                    <div class="help-title">Kullanım Koşulları</div>
+                    <div class="help-description">Platformun kullanım koşullarını buradan inceleyebilirsiniz.</div>
+                </div>
+                <div class="help-card">
+                    <div class="help-icon">🔒</div> 
+                    <div class="help-title">Gizlilik Politikası</div>
+                    <div class="help-description">Kişisel verilerinizin nasıl korunduğunu öğrenin.</div>
+                </div>
+                <div class="help-card">
+                    <div class="help-icon">🛡️</div>
+                    <div class="help-title">Güvenlik</div>
+                    <div class="help-description">Platformun güvenlik önlemleri hakkında bilgi edinin.</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- İlan Ver Sayfası -->
+        <div id="ilan-ver" class="section">
+            <div class="products-section">
+                <div class="section-title">Ücretsiz İlan Ver</div>
+                <form id="ilanForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="ilanTitle">İlan Başlığı</label>
+                            <input type="text" id="ilanTitle" placeholder="İlan başlığınızı girin" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ilanCategory">Kategori</label>
+                            <select id="ilanCategory" required>
+                                <option value="">Kategori Seçin</option>
+                                <option value="elektronik">Elektronik</option>
+                                <option value="giyim">Giyim & Aksesuar</option>
+                                <option value="ev-yasam">Ev & Yaşam</option>
+                                <option value="arac">Vasıta</option>
+                                <option value="spor">Spor & Outdoor</option>
+                                <option value="kitap">Kitap & Müzik</option>
+                                <option value="oyuncak">Bebek & Çocuk</option>
+                                <option value="diger">Diğer</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ilanPrice">Fiyat (TL)</label>
+                            <input type="number" id="ilanPrice" placeholder="Fiyatı girin" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ilanCondition">Durum</label>
+                            <select id="ilanCondition" required>
+                                <option value="">Durum Seçin</option>
+                                <option value="sifir">Sıfır</option>
+                                <option value="az-kullanilmis">Az Kullanılmış</option>
+                                <option value="kullanilmis">Kullanılmış</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ilanLocation">Konum</label>
+                            <input type="text" id="ilanLocation" placeholder="Şehir, İlçe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ilanDescription">Açıklama</label>
+                            <textarea id="ilanDescription" placeholder="Ürün açıklamasını girin" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="ilanImages">Fotoğraflar</label>
+                            <input type="file" id="ilanImages" multiple accept="image/*">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary">İlanı Yayınla</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Giriş Yap Sayfası -->
+        <div id="giris-yap" class="section">
+            <div class="login-section">
+                <div class="login-title">Giriş Yap</div>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="email">E-posta</label>
+                        <input type="email" id="email" placeholder="E-posta adresiniz" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Şifre</label>
+                        <input type="password" id="password" placeholder="Şifreniz" required>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%;">Giriş Yap</button>
+                </form>
+                <div class="divider"><span>veya</span></div>
+                <div class="social-login">
+                    <button class="social-btn">
+                        <i class="fab fa-google"></i> Google
+                    </button>
+                    <button class="social-btn">
+                        <i class="fab fa-facebook"></i> Facebook
+                    </button>
+                </div>
+                <p style="text-align: center; margin-top: 20px;">
+                    Hesabınız yok mu? <a href="#" onclick="showSection('kayit-ol')" style="color: var(--primary-color);">Kayıt Ol</a>
+                </p>
+            </div>
+        </div>
+        
+        <!-- Kayıt Ol Sayfası -->
+        <div id="kayit-ol" class="section">
+            <div class="login-section">
+                <div class="login-title">Kayıt Ol</div>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="fullName">Ad Soyad</label>
+                        <input type="text" id="fullName" placeholder="Adınız ve soyadınız" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">E-posta</label>
+                        <input type="email" id="registerEmail" placeholder="E-posta adresiniz" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Şifre</label>
+                        <input type="password" id="registerPassword" placeholder="Şifreniz (en az 6 karakter)" required minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Şifre Tekrar</label>
+                        <input type="password" id="confirmPassword" placeholder="Şifrenizi tekrar girin" required>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%;">Kayıt Ol</button>
+                </form>
+                <div class="divider"><span>veya</span></div>
+                <div class="social-login">
+                    <button class="social-btn">
+                        <i class="fab fa-google"></i> Google
+                    </button>
+                    <button class="social-btn">
+                        <i class="fab fa-facebook"></i> Facebook
+                    </button>
+                </div>
+                <p style="text-align: center; margin-top: 20px;">
+                    Zaten hesabınız var mı? <a href="#" onclick="showSection('giris-yap')" style="color: var(--primary-color);">Giriş Yap</a>
+                </p>
+            </div>
+        </div>
+    </div>  
+    
+    <!-- Giriş Modal -->
+    <div id="login-modal" class="login-modal">
+        <div class="login-modal-content">
+            <div class="login-tabs">
+                <div class="login-tab active" onclick="switchLoginTab('login')">Giriş Yap</div>
+                <div class="login-tab" onclick="switchLoginTab('register')">Kayıt Ol</div>
+            </div>
+            
+            <form id="modal-login-form" class="login-form active">
+                <div class="form-group">
+                    <label for="modal-email">E-posta</label>
+                    <input type="email" id="modal-email" placeholder="E-posta adresiniz" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-password">Şifre</label>
+                    <input type="password" id="modal-password" placeholder="Şifreniz" required>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Giriş Yap</button>
+            </form>
+            
+            <form id="modal-register-form" class="login-form">
+                <div class="form-group">
+                    <label for="modal-fullname">Ad Soyad</label>
+                    <input type="text" id="modal-fullname" placeholder="Adınız ve soyadınız" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-register-email">E-posta</label>
+                    <input type="email" id="modal-register-email" placeholder="E-posta adresiniz" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-register-password">Şifre</label>
+                    <input type="password" id="modal-register-password" placeholder="Şifreniz (en az 6 karakter)" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <label for="modal-confirm-password">Şifre Tekrar</label>
+                    <input type="password" id="modal-confirm-password" placeholder="Şifrenizi tekrar girin" required>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Kayıt Ol</button>
+            </form>
+            
+            <button class="close-modal" onclick="closeLoginModal()" style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 24px; cursor: pointer;">&times;</button>
+        </div>
+    </div>
+
+   
+</body>
+
+</html>
+</html><!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İkinci El Alışveriş Platformu</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo"> </div>
+        <nav class="main-nav">
+          <ul>
+                 <li class="nav-item active" onclick="showSection('anasayfa')">Anasayfa</li>
+                <li class="nav-item" onclick="showSection('performans')">Performans</li>
+                <li class="nav-item" onclick="showSection('guvenli-odeme')">Güvenli Ödeme</li>
+                <li class="nav-item" onclick="showSection('yardim')">Yardım</li>
+                <li class="nav-item" onclick="showSection('elektronik')">Elektronik</li>
+                <li class="nav-item" onclick="showSection('giyim')">Giyim & Aksesuar</li>
+                <li class="nav-item" onclick="showSection('ev-yasam')">Ev & Yaşam</li>
+                <li class="nav-item" onclick="showSection('arac')">Vasıta</li>
+                <li class="nav-item" onclick="showSection('spor')">Spor & Outdoor</li>
+                <li class="nav-item" onclick="showSection('kitap')">Kitap & Müzik</li>
+                <li class="nav-item" onclick="showSection('oyuncak')">Bebek & Çocuk</li>     
+                <li class="nav-item" onclick="showSection('diger')">Diğer</li>
+         </ul>
+        </nav>
+    </header>
+    </header>
+
+            
